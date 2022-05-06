@@ -14,7 +14,7 @@ public class ConnectionFactory {
     //specifically a singleton because of the private constructor
     private ConnectionFactory() {
         try {
-            prop.load(new FileReader());
+            prop.load(new FileReader("src/main/resources/db.properties"));
 
         }catch(IOException e) {
             e.printStackTrace();
