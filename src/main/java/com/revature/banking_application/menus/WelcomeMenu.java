@@ -1,4 +1,5 @@
 package com.revature.banking_application.menus;
+import com.revature.banking_application.services.UserServices;
 
 import java.io.BufferedReader;
 
@@ -6,27 +7,22 @@ import static com.revature.banking_application.util.AppState.shutdown;
 
 public class WelcomeMenu extends Menu {
 
-    public BufferedReader terminalReader;
+    private UserServices userServices;
 
     public WelcomeMenu(BufferedReader terminalReader){
         super("Welcome", "/welcome", terminalReader);
+        this.userServices = userServices;
     }
     @Override
     public void render() throws Exception{
 
         //this is my intro
-        System.out.println("This is the start of Jerry's Banking Application");
+        //System.out.println("This is the start of Jerry's Banking Application");
 
         //This is the welcome message for users
         String welcome = "Welcome to JBank!";
         String option1 = " 1) Login";
         String option2 = " 2) Register)";
-        // String()calls the constructor for the string class
-        // new keyword instantiates it
-        //String option3 = new String();
-
-       // String goodbye;
-       // goodbye = "Have a wonderful day";
         String option3 = " 3) Exit the Banking Application";
 
         System.out.printf("%s \n %s \n %s \n %s", welcome, option1, option2, option3).println();

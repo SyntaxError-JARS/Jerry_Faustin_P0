@@ -5,11 +5,16 @@ public class MainDriver {
 
     public static void main(String[] args) {
 
-        System.out.println("1. AppState instantiated");
-        AppState appState = new AppState();
+        try {
+            System.out.println("AppState instantiated");
+            AppState appState = new AppState();
 
-        System.out.println("Jerry's Banking Application is starting up....");
-        appState.startup();
+            System.out.println("Jerry's Banking Application is starting up....");
+            appState.startup();
+
+        }catch (NullPointerException e ) {
+            e.printStackTrace();
+        }
 
     }
 }

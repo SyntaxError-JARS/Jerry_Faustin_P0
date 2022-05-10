@@ -12,7 +12,7 @@ public class AppState {
     private RegisterMenu registerMenu;
 
     public AppState(){
-        System.out.println("2. Generating instance of AppState.");
+        System.out.println("Generating instance of AppState.");
         isRunning = true;
         BufferedReader terminalReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -24,7 +24,8 @@ public class AppState {
         try{
             while(isRunning) {
                 System.out.println("Application successfully started");
-                registerMenu.render();
+                //registerMenu.render();
+                welcomeMenu.render();
             }
         }catch (Exception e) {
             e.printStackTrace();

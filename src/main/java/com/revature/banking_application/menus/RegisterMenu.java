@@ -1,11 +1,15 @@
 package com.revature.banking_application.menus;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import com.revature.banking_application.models.User;
+import com.revature.banking_application.services.UserServices;
 
 public class RegisterMenu extends Menu {
 
-    public BufferedReader terminalReader;
+    private UserServices userServices = new UserServices();
 
     public RegisterMenu(BufferedReader terminalReader){
         super("Register", "/register", terminalReader);
@@ -31,9 +35,6 @@ public class RegisterMenu extends Menu {
         System.out.println("What is your Date of Birth?");
         String dob = terminalReader.readLine();
 
-        // splitting String flName into a String array by " " spaces
-        //String[] nameArray = flName.split(" ");
-        // string
 
         if (!password.equals(passwordCheck)) { //checking if password does not equal passwordCheck
             System.out.println("Passwords do not match");
@@ -41,6 +42,6 @@ public class RegisterMenu extends Menu {
         }
         User newUser = new User(email, fname, lname, password, dob);
         System.out.println("Here is the user that was added to JBank: " + newUser);
-        // userServices.registerUser(newUser);
+        userServices.registerUser(newUser);
     }
 }
