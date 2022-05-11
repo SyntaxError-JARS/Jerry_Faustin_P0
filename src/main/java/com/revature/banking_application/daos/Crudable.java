@@ -3,17 +3,17 @@ package com.revature.banking_application.daos;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public interface Crudable<T> {
+public interface Crudable<U> {
 
     // Create
-    T create(T newObject);
+    U create(U newObject);
 
     //Read
-    T[] findAll() throws IOException;
-    //T findById(String id);
+    U[] findAll() throws IOException;
+    //U findById(String id);
 
     //Update
-    boolean update(T updatedObj);
+    boolean update(U updatedObj);
 
     //Delete
     //boolean delete(String id);

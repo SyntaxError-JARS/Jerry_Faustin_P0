@@ -8,7 +8,7 @@ import java.sql.*;
 public class UserDao implements Crudable<User> {
 
     //@Override
-    public static User create(User newUser){
+    public User create(User newUser){
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
@@ -52,7 +52,7 @@ public class UserDao implements Crudable<User> {
             ResultSet rs = s.executeQuery(sql);
 
             while (rs.next()) {
-                User user = new User;
+                User user = new User();
 
                 user.setEmail(rs.getString("email"));
                 user.setFname(rs.getString("fname"));
