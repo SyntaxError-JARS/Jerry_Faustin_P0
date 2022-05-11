@@ -2,9 +2,9 @@ package com.revature.banking_application.web.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.banking_application.daos.UserDao;
-import com.revature.banking_application.models.User;
 import com.revature.banking_application.services.UserServices;
 import com.revature.banking_application.web.servlets.AuthServlet;
+import com.revature.banking_application.web.servlets.UserServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -21,14 +21,17 @@ public class ContextLoaderListener implements ServletContextListener {
         UserServices userServices = new UserServices(userDao);
 
         AuthServlet authServlet = new AuthServlet(userServices, mapper);
+        UserServlet userServlet = new UserServlet(userServices, mapper);
 
         ServletContext context = sce.getServletContext();
         context.addServlet("AuthServlet", authServlet).addMapping("/auth");
+        context.addServlet("UserServlet", userServlet).addMapping("/users/*");
 
     }
 
-    public void contextDestroyed(ServletContextEvent sce){
+    @Override
+    public void contextDestroyed(ServletContextEvent sce){ ServletContextListener.super.contextDestroyed(sce); }
 
 
-    }
+
 }

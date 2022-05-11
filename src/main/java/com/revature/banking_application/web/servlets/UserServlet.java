@@ -2,6 +2,7 @@ package com.revature.banking_application.web.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.banking_application.daos.UserDao;
+import com.revature.banking_application.models.User;
 import com.revature.banking_application.services.UserServices;
 
 import javax.servlet.ServletException;
@@ -11,11 +12,22 @@ import java.io.IOException;
 
 public class UserServlet {
 
-    private final UserServices userServices = new UserServices(new UserDao());
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final UserServices userServices;
+    private final ObjectMapper mapper;
+
+    public UserServlet(UserServices userServices, ObjectMapper mapper){
+        this.userServices = userServices;
+        this.mapper = mapper;
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User[] users = userServices.readAll();
+
+        String payload = mapper.writeValueAsString(users);
+
+        resp.getWriter().write(payload);
 
     }
 
