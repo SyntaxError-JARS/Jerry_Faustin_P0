@@ -6,6 +6,7 @@ import com.revature.banking_application.exceptions.AuthenticationException;
 import com.revature.banking_application.exceptions.InvalidRequestException;
 import com.revature.banking_application.models.User;
 import com.revature.banking_application.services.UserServices;
+import com.revature.banking_application.web.dto.LoginCreds;
 
 
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/auth")
+// @WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
 
     private final UserServices userServices = new UserServices(new UserDao());
@@ -25,13 +26,16 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         try {
-            User reqUser = mapper.readValue(req.getInputStream(), User.class);
-            User authUser = userServices.authenticateUser(reqUser.getEmail(), reqUser.getPassword());
+           // User reqUser = mapper.readValue(req.getInputStream(), User.class);
+            //User authUser = userServices.authenticateUser(reqUser.getEmail(), reqUser.getPassword());
 
+            LoginCreds loginCreds = mapper.readValue(req.getInputStream(), LoginCreds.class);
+
+            User authUser = userServices.authenticateUser(loginCreds.getEmail(), loginCreds.getPassword());
             HttpSession httpSession = req.getSession(true);
             httpSession.setAttribute("authUser", authUser);
 
-            resp.setStatus(200); // default is 200
+            //resp.setStatus(200); // default is 200
             resp.getWriter().write("You have successfully logged in");
 
         } catch (AuthenticationException | InvalidRequestException e) {
