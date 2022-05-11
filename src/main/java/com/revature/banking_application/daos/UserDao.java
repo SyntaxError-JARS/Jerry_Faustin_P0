@@ -83,9 +83,54 @@ public class UserDao implements Crudable<User> {
     @Override
     public boolean update(User updatedObj) {return false;}
 
-    public void checkEmail(String email) {
-        String sql = "select email from user where email = " + email;
+
+    public User authenticateUser(String email, String password){
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "select * from banking_info where email = ? and password = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(!rs.next()) {
+                return null;
+            }
+
+            User user = new User();
+
+            user.setEmail(rs.getString("email"));
+            user.setFname(rs.getString("fname"));
+            user.setLname(rs.getString("lname"));
+            user.setPassword(rs.getString("password"));
+            user.setDob(rs.getString("dob"));
+
+            return user;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
+    public boolean checkEmail(String email) {
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "select email from user where email = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                return false;
+            }
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }
 
