@@ -4,11 +4,11 @@
              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name>Hello, Servlets!</display-name>
+    <display-name>JBank</display-name>
 
     <servlet>
         <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.revature.web.servlets.TestServlet</servlet-class>
+        <servlet-class>com.revature.banking_application.web.servlets.TestServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

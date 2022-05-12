@@ -8,12 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+
 public class UserServiceTestSuite {
 
     UserServices sut;
+    UserDao mockUserDao;
 
     @BeforeEach
     public void testPrep(){
+        // In order to specify and mock a Dao
+        mockUserDao = mock(UserDao.class);
         sut = new UserServices(new UserDao());
     }
 
@@ -35,6 +40,8 @@ public class UserServiceTestSuite {
     public void test_create_givenValidUser_returnsUser(){
         // Arrange
         User user = new User("valid", "valid", "valid", "valid", "valid");
+        // ensures that the services can continue execution and get expected results from the dao without any issues
+        when(mockUserDao.create(user)).thenReturn(user);
 
         // Act
         User actualUser = sut.create(user);
@@ -45,6 +52,7 @@ public class UserServiceTestSuite {
         Assertions.assertEquals("valid", actualUser.getLname());
         Assertions.assertEquals("valid", actualUser.getPassword());
         Assertions.assertEquals("valid", actualUser.getDob());
+        verify(mockUserDao, times(1)).create(user);
 
     }
 

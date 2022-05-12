@@ -1,10 +1,13 @@
 package com.revature.banking_application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
 
     private String email;
     private String fname;
     private String lname;
+    @JsonIgnore
     private String password;
     private String dob;
 
