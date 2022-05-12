@@ -1,7 +1,6 @@
 package com.revature.banking_application.web.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.banking_application.daos.UserDao;
 import com.revature.banking_application.exceptions.AuthenticationException;
 import com.revature.banking_application.exceptions.InvalidRequestException;
 import com.revature.banking_application.models.User;
@@ -19,8 +18,13 @@ import java.io.IOException;
 // @WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
 
-    private final UserServices userServices = new UserServices(new UserDao());
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final UserServices userServices;
+    private final ObjectMapper mapper;
+
+    public AuthServlet(UserServices userServices, ObjectMapper mapper){
+        this.userServices = userServices;
+        this.mapper = mapper;
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
