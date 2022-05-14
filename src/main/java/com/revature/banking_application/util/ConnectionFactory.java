@@ -14,7 +14,7 @@ public class ConnectionFactory {
     //specifically a singleton because of the private constructor
     private ConnectionFactory() {
         try {
-            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            ClassLoader loader = Thread.currentThread().getContextClassLoader(); // allows us to specify the file name instead of a specific path
             prop.load(loader.getResourceAsStream("db.properties"));
         }catch(IOException e) {
             e.printStackTrace();

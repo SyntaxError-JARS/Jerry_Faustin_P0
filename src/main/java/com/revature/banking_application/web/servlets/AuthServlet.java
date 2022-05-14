@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-// @WebServlet("/auth") // this requires a default No-Args constructor
+ @WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
 
     private final UserServices userServices;
-    private final ObjectMapper mapper;
+    private final ObjectMapper mapper; //ObjectMapper provided by jackson
 
     public AuthServlet(UserServices userServices, ObjectMapper mapper){
         this.userServices = userServices;
@@ -36,8 +36,8 @@ public class AuthServlet extends HttpServlet {
             LoginCreds loginCreds = mapper.readValue(req.getInputStream(), LoginCreds.class);
 
             User authUser = userServices.authenticateUser(loginCreds.getEmail(), loginCreds.getPassword());
-            HttpSession httpSession = req.getSession(true);
-            httpSession.setAttribute("authUser", authUser);
+            HttpSession httpSession = req.getSession(true); // this makes sure that if the session doesn't exist, it will generate it. otherwise it will go ahead and overwrite current session
+            httpSession.setAttribute("authUser", authUser); // lets us know what users are in here
 
             //resp.setStatus(200); // default is 200
             resp.getWriter().write("You have successfully logged in");

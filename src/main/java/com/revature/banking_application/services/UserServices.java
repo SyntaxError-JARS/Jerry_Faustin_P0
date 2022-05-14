@@ -62,6 +62,7 @@ public class UserServices implements Serviceable<User> {
         return persistedUser;
     }
 
+    @Override
     public boolean validateInput(User newUser) {
         logger.debug("Validating User: " + newUser);
         if(newUser == null) return false;

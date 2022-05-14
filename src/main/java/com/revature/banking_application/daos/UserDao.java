@@ -1,11 +1,15 @@
 package com.revature.banking_application.daos;
 
+import com.revature.banking_application.exceptions.ResourcePersistanceException;
 import com.revature.banking_application.models.User;
 import com.revature.banking_application.util.ConnectionFactory;
+import com.revature.banking_application.util.Logger.Logger;
 import java.io.*;
 import java.sql.*;
 
 public class UserDao implements Crudable<User> {
+
+    private Logger logger = Logger.getLogger();
 
     //@Override
     public User create(User newUser){
@@ -27,11 +31,11 @@ public class UserDao implements Crudable<User> {
             int checkInsert = ps.executeUpdate();
 
             if(checkInsert ==0){
-                throw new RuntimeException();
+                throw new ResourcePersistanceException("User was not entered into database due to some issue.");
             }
 
 
-        }catch (SQLException | RuntimeException e){
+        }catch (SQLException e){
             e.printStackTrace();
             return null;
         }
