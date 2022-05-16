@@ -10,7 +10,7 @@ public interface Crudable<U> {
 
     //Read
     U[] findAll() throws IOException;
-    //U findById(String id);
+    // U findById(String id);
 
     //Update
     boolean update(U updatedObj);

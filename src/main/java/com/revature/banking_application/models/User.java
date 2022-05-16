@@ -7,7 +7,7 @@ public class User {
     private String email;
     private String fname;
     private String lname;
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
     private String dob;
 

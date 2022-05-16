@@ -75,8 +75,8 @@ public class UserServices implements Serviceable<User> {
 
     public User authenticateUser(String email, String password) {
 
-        if (password == null || password.trim().equals("") || password == null || password.trim().equals("")){
-            throw new InvalidRequestException("Either username or password is an invalid entry. Please try logging in again");
+        if (email == null || email.trim().equals("") || password == null || password.trim().equals("")){
+            throw new InvalidRequestException("Either email or password is an invalid entry. Please try logging in again");
         }
 
         User authenticatedUser = userDao.authenticateUser(email, password);

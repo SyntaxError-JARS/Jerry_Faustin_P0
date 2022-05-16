@@ -1,0 +1,31 @@
+2022-05-15T18:10:32.103 DEBUG: Validating User: User{email='test', fname='test', lname='test', password='test', dob='test'}
+2022-05-15T18:12:45.337 DEBUG: Validating User: User{email='test', fname='test', lname='test', password='test', dob='test'}
+2022-05-15T20:03:48.706 DEBUG: Validating User: User{email='test', fname='test', lname='test', password='test', dob='test'}
+2022-05-15T20:06:20.772 DEBUG: Validating User: User{email='test', fname='test', lname='test', password='test', dob='test'}
+2022-05-16T15:18:28.139 INFO: Begin reading Users in our file database.
+2022-05-16T15:18:28.473 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:20:03.910 INFO: Begin reading Users in our file database.
+2022-05-16T15:20:04.162 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:22:01.432 INFO: Begin reading Users in our file database.
+2022-05-16T15:22:01.688 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:38:08.424 INFO: Begin reading Users in our file database.
+2022-05-16T15:38:08.691 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:39:19.473 INFO: Begin reading Users in our file database.
+2022-05-16T15:39:19.730 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:40:25.392 INFO: Begin reading Users in our file database.
+2022-05-16T15:40:25.674 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:44:20.697 INFO: Begin reading Users in our file database.
+2022-05-16T15:44:20.968 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:46:21.638 INFO: Begin reading Users in our file database.
+2022-05-16T15:46:21.892 INFO: Users have been found, here are the results: 
+
+2022-05-16T15:46:46.717 INFO: Begin reading Users in our file database.
+2022-05-16T15:46:46.993 INFO: Users have been found, here are the results: 
+

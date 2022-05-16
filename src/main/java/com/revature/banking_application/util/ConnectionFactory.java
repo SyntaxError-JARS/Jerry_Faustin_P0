@@ -19,6 +19,11 @@ public class ConnectionFactory {
         }catch(IOException e) {
             e.printStackTrace();
         }
+//        try {
+//            prop.load(new FileReader("src/main/resources/db.properties"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
     static {
         try {
@@ -35,6 +40,7 @@ public class ConnectionFactory {
     // Once we getInstance() we are able to execute getConnection to return a Connection to our database
     public Connection getConnection() {
         Connection conn = null;
+        System.out.println(prop.getProperty("url"));
 
         try {
             conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));

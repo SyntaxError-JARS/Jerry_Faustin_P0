@@ -11,12 +11,12 @@ public class UserDao implements Crudable<User> {
 
     private Logger logger = Logger.getLogger();
 
-    //@Override
+    @Override
     public User create(User newUser){
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
-            String sql = "insert into banking_info (email, fname, lname, password, dob) values (?, ?, ?, ?, ?";
+            String sql = "insert into users (email, fname, lname, password, dob) values (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             System.out.println(newUser.getFname());
@@ -43,14 +43,15 @@ public class UserDao implements Crudable<User> {
 
     }
     @Override
-    public User[] findAll() throws IOException{
+    public User[] findAll() throws IOException {
 
         User[] users = new User[10];
         int index = 0;
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 
-            String sql = "select * from banking_info";
+            System.out.println(conn.getClientInfo().getProperty("url"));
+            String sql = "select * from users";
             Statement s = conn.createStatement();
 
             ResultSet rs = s.executeQuery(sql);
@@ -69,71 +70,99 @@ public class UserDao implements Crudable<User> {
                 index++;
                 System.out.println("Going to the next Line for our following index.");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
 
         System.out.println("Returning user information.");
         return users;
-
-        //@Override
-        // public User findById(String id){
-        //try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-
-        // String sql = "select * from"
-        // }
     }
-    @Override
-    public boolean update(User updatedObj) {return false;}
 
-
-    public User authenticateUser(String email, String password){
-
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-            String sql = "select * from banking_info where email = ? and password = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-            ResultSet rs = ps.executeQuery();
-
-            if(!rs.next()) {
-                return null;
-            }
-
-            User user = new User();
-
-            user.setEmail(rs.getString("email"));
-            user.setFname(rs.getString("fname"));
-            user.setLname(rs.getString("lname"));
-            user.setPassword(rs.getString("password"));
-            user.setDob(rs.getString("dob"));
-
-            return user;
-        } catch (SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public boolean checkEmail(String email) {
-
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "select email from user where email = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, email);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (!rs.isBeforeFirst()) {
-                return false;
-            }
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
+//        @Override
+//         public User findById(String id){
+//            try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+//
+//                String sql = "select * from  where id = ?";
+//                PreparedStatement ps = conn.prepareStatement(sql);
+//                ps.setInt(1, Integer.parseInt(id));
+//                ResultSet rs = ps.executeQuery();
+//
+//                if (!rs.next()) {
+//                    throw new ResourcePersistanceException("User was not found in the database, please check if you entered the correct ID.");
+//                }
+//
+//                User user = new User();
+//
+//                user.setEmail(rs.getString("email"));
+//                user.setFname(rs.getString("fname"));
+//                user.setLname(rs.getString("lname"));
+//                user.setPassword(rs.getString("password"));
+//                user.setDob(rs.getString("dob"));
+//
+//                return user;
+//            }catch (SQLException e){
+//                e.printStackTrace();
+//                return null;
+//            }
+//
+//
+//
+//
+//    }
+        @Override
+        public boolean update (User updatedObj){
             return false;
         }
-    }
+
+
+        public User authenticateUser (String email, String password){
+
+            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+                String sql = "select * from users where email = ? and password = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, email);
+                ps.setString(2, password);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (!rs.next()) {
+                    return null;
+                }
+
+                User user = new User();
+
+                user.setEmail(rs.getString("email"));
+                user.setFname(rs.getString("fname"));
+                user.setLname(rs.getString("lname"));
+                user.setPassword(rs.getString("password"));
+                user.setDob(rs.getString("dob"));
+
+                return user;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        public boolean checkEmail (String email){
+
+            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+                String sql = "select email from users where email = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, email);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (!rs.isBeforeFirst()) {
+                    return false;
+                }
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
 
 
 }

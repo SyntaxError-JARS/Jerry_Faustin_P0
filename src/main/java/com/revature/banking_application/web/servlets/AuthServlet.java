@@ -8,6 +8,7 @@ import com.revature.banking_application.services.UserServices;
 import com.revature.banking_application.web.dto.LoginCreds;
 
 
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
- @WebServlet("/auth") // this requires a default No-Args constructor
+ //@WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
 
     private final UserServices userServices;
@@ -27,7 +28,7 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
 
         try {
            // User reqUser = mapper.readValue(req.getInputStream(), User.class);
@@ -54,3 +55,5 @@ public class AuthServlet extends HttpServlet {
 
     }
 }
+
+
