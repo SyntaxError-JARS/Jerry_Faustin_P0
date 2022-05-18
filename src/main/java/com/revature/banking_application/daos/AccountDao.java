@@ -88,6 +88,7 @@ public class AccountDao implements Crudable <Account> {
 
     }
 
+
     public Account withdraw(Account newUpdate) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "Update account Set account_balance = account_balance - ?, account_action = ? where username = ? ";
@@ -111,7 +112,7 @@ public class AccountDao implements Crudable <Account> {
             if(aa.equals("withdraw")) {
                 return newUpdate;
             }else {
-                throw new InvalidRequestException("Account could not deposit due to inaccurate account_action");
+                throw new InvalidRequestException("Account could not withdraw due to inaccurate account_action");
             }
 
         }catch (SQLException e) {
