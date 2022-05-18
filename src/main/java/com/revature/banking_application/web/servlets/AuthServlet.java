@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
  //@WebServlet("/auth") // this requires a default No-Args constructor
-public class AuthServlet extends HttpServlet {
+public class AuthServlet extends HttpServlet implements Authable {
 
     private final UserServices userServices;
     private final ObjectMapper mapper; //ObjectMapper provided by jackson
@@ -29,6 +29,8 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
+
+
 
         try {
            // User reqUser = mapper.readValue(req.getInputStream(), User.class);
@@ -54,6 +56,7 @@ public class AuthServlet extends HttpServlet {
 
 
     }
+
 }
 
 

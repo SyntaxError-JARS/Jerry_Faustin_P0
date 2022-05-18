@@ -21,6 +21,7 @@ public class CustomUserServiceTestSuite {
     }
 
     @Test
+    @Disabled
     public void testValidPasswordUsernameLogin_returnString() throws AuthenticationException {
        // User[] actualResult = sut.readAll();
         //  System.out.println(actualResult);
@@ -33,6 +34,26 @@ public class CustomUserServiceTestSuite {
 
       //boolean actualResult = sut.validateInput(user);
       //Assertions.assertTrue(actualResult);
+    }
+
+    @Test
+    public void test_create_givenValidUser_returnsUser(){
+        // Arrange
+        User user = new User("valid", "valid", "valid", "valid", "valid");
+        // ensures that the services can continue execution and get expected results from the dao without any issues
+        // when(mockUserDao.create(user)).thenReturn(user);
+
+        // Act
+        User actualUser = sut.create(user);
+
+        // Assert
+        Assertions.assertEquals("valid", actualUser.getEmail());
+        Assertions.assertEquals("valid", actualUser.getFname());
+        Assertions.assertEquals("valid", actualUser.getLname());
+        Assertions.assertEquals("valid", actualUser.getPassword());
+        Assertions.assertEquals("valid", actualUser.getDob());
+        // verify(mockUserDao, times(1)).create(user);
+
     }
 
 }

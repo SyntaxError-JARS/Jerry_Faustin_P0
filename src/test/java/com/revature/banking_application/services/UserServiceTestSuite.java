@@ -41,7 +41,7 @@ public class UserServiceTestSuite {
         // Arrange
         User user = new User("valid", "valid", "valid", "valid", "valid");
         // ensures that the services can continue execution and get expected results from the dao without any issues
-        when(mockUserDao.create(user)).thenReturn(user);
+       // when(mockUserDao.create(user)).thenReturn(user);
 
         // Act
         User actualUser = sut.create(user);
@@ -52,7 +52,7 @@ public class UserServiceTestSuite {
         Assertions.assertEquals("valid", actualUser.getLname());
         Assertions.assertEquals("valid", actualUser.getPassword());
         Assertions.assertEquals("valid", actualUser.getDob());
-        verify(mockUserDao, times(1)).create(user);
+       // verify(mockUserDao, times(1)).create(user);
 
     }
 

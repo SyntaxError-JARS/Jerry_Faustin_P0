@@ -29,3 +29,9 @@
 2022-05-16T15:46:46.717 INFO: Begin reading Users in our file database.
 2022-05-16T15:46:46.993 INFO: Users have been found, here are the results: 
 
+2022-05-17T00:31:16.446 INFO: User trying to be registered: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}
+2022-05-17T00:31:16.449 DEBUG: Validating User: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}
+2022-05-17T00:31:16.724 INFO: User has been persisted: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}
+2022-05-17T22:30:53.094 INFO: User trying to be registered: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}
+2022-05-17T22:30:53.099 DEBUG: Validating User: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}
+2022-05-17T22:30:53.417 INFO: User has been persisted: User{email='valid', fname='valid', lname='valid', password='valid', dob='valid'}

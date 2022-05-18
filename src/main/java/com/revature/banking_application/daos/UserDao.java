@@ -12,27 +12,43 @@ public class UserDao implements Crudable<User> {
     private Logger logger = Logger.getLogger();
 
     @Override
-    public User create(User newUser){
+    public User create(User newUser ){
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
             String sql = "insert into users (email, fname, lname, password, dob) values (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            System.out.println(newUser.getFname());
-            System.out.println(newUser.getLname());
+           //System.out.println(newUser.getFname());
+            //System.out.println(newUser.getLname());
+              ps.setString(1, newUser.getEmail());
+              ps.setString(2, newUser.getFname());
+              ps.setString(3, newUser.getLname());
+              ps.setString(4, newUser.getPassword());
+              ps.setString(5, newUser.getDob());
 
-            ps.setString(1, newUser.getEmail());
-            ps.setString(2, newUser.getFname());
-            ps.setString(3, newUser.getLname());
-            ps.setString(4, newUser.getPassword());
-            ps.setString(5, newUser.getDob());
+
+//            ps.setString(1, "email");
+//            ps.setString(2, "fname");
+//            ps.setString(3, "lname");
+//            ps.setString(4, "password");
+//            ps.setString(5, "dob");
 
             int checkInsert = ps.executeUpdate();
 
             if(checkInsert ==0){
                 throw new ResourcePersistanceException("User was not entered into database due to some issue.");
             }
+//          User newUser = new User();
+//           newUser.setEmail("email");
+//           newUser.setFname("fname");
+//           newUser.setLname("lname");
+//           newUser.setPassword("password");
+//           newUser.setDob("dob");
+//
+
+
+           // String newUser1 = Integer.toString(checkInsert);
 
 
         }catch (SQLException e){
@@ -40,7 +56,6 @@ public class UserDao implements Crudable<User> {
             return null;
         }
         return newUser;
-
     }
     @Override
     public User[] findAll() throws IOException {
@@ -111,8 +126,11 @@ public class UserDao implements Crudable<User> {
 //
 //    }
         @Override
-        public boolean update (User updatedObj){
-            return false;
+        public User deposit(User updatedObj){
+            return null;
+        }
+        public User withdraw(User updatedObJ){
+        return null;
         }
 
 
@@ -162,6 +180,8 @@ public class UserDao implements Crudable<User> {
                 return false;
             }
         }
+
+        public User findByEmail(String username) { return null;}
 
 
 

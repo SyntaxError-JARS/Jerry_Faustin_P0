@@ -8,10 +8,11 @@ public interface Serviceable<U> {
 
     // Read
     U[] readAll();
-    // U readById(String id);
+     U readByEmail(String username);
 
     // Update
-    U update(U updatedObject);
+    U deposit(U updatedObject);
+    U withdraw(U updatedObject);
 
     // Delete
     //boolean delete(String id);

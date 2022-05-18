@@ -33,8 +33,10 @@ public class UserServices implements Serviceable<User> {
         }
     }
 
-    @Override
-    public User update(User updatedObject) { return null;}
+    //@Override
+    public User deposit(User updatedObject) { return null;}
+
+    public User withdraw(User updatedObject) {return null;}
 
     //@Override
     //public boolean delete(String id) { return false;}
@@ -44,6 +46,7 @@ public class UserServices implements Serviceable<User> {
         return userDao.checkEmail(email);
     }
 
+    public User readByEmail(String username) { return null;}
     public User create(User newUser) {
         logger.info("User trying to be registered: " + newUser);
         if(!validateInput(newUser)){
@@ -71,6 +74,7 @@ public class UserServices implements Serviceable<User> {
         if(newUser.getLname() == null || newUser.getLname().trim().equals("")) return false;
         if(newUser.getPassword() == null || newUser.getPassword().trim().equals("")) return false;
         return newUser.getDob() != null || !newUser.getDob().trim().equals("");
+
     }
 
     public User authenticateUser(String email, String password) {
