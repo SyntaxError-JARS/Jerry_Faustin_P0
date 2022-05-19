@@ -35,13 +35,13 @@ public class AccountServices implements Serviceable<Account> {
     }
     public Account withdraw(Account newUpdate) {
 
-          Account  withDrawTest = accountDao.withdraw(newUpdate);
-          int ab = newUpdate.getAccountBalance();
-          // int ac
-          if(ab < 0){
-              throw new InvalidRequestException("Account could not withdraw due to an insufficient amount of cash");
-          }
-            return withDrawTest;
+//          Account  withDrawTest = accountDao.withdraw(newUpdate);
+//          int ab = newUpdate.getAccountBalance();
+//          // int ac
+//          if(ab < 0){
+//              throw new InvalidRequestException("Account could not withdraw due to an insufficient amount of cash");
+//          }
+            return accountDao.withdraw(newUpdate);
         }
 
     @Override

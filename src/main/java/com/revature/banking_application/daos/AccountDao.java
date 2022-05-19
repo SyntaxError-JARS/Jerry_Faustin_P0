@@ -87,10 +87,77 @@ public class AccountDao implements Crudable <Account> {
         }
 
     }
-
-
-    public Account withdraw(Account newUpdate) {
+//    public Account withdraw1(int account_balance, String account_action, String username) {
+//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+//            String sql2 = "select account_balance where username = ? ";
+//            PreparedStatement ps2 = conn.prepareStatement(sql2);
+//
+//            ps2.setInt(1, account_balance);
+//            ResultSet  rs = ps2.executeQuery(sql2);
+//            if (!rs.next()) {
+//               throw new ResourcePersistanceException("Username was not found in the database.");
+//            }
+//            int aa = account_balance;
+//            if (aa > 0){
+//                String sql = "Update account Set account_balance = account_balance - ?, account_action = ? where username = ? ";
+//                PreparedStatement ps = conn.prepareStatement(sql);
+//
+//                ps.setInt(1, account_balance);
+//                ps.setString(2, account_action);
+//                ps.setString(3, username);
+//
+//
+//                int checkInsert = ps.executeUpdate();
+//
+//                if(checkInsert ==0){
+//                    throw new RuntimeException();
+//                }
+//
+//                int ab = account_balance;
+//
+////            if (af < ab) {
+////                throw new InvalidRequestException("Account could not withdraw due to insufficient funds ");
+////            }
+//
+//                if(ab < 0){
+//                    throw new InvalidRequestException("Account could not withdraw due to a negative withdraw amount");
+//                }
+//                String aa = newUpdate.getAccountAction();
+//                if(aa.equals("withdraw")) {
+//                    return newUpdate;
+//                }else {
+//                    throw new InvalidRequestException("Account could not withdraw due to inaccurate account_action");
+//                }
+//
+//            }
+//
+//
+//        }
+//    }
+    public Account withdraw( Account newUpdate ) {  //Integer account_balance, String username,
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+//            String sql2 = "select account_balance where username = ? ";
+//            PreparedStatement ps2 = conn.prepareStatement(sql2);
+//
+//            ps2.setInt(1, newUpdate.getAccountBalance());
+//            ps2.setString(2, newUpdate.getUsername());
+//
+//            ResultSet  rs = ps2.executeQuery(sql2);
+//
+//            if (!rs.next()) {
+//                throw new ResourcePersistanceException("Username was not found in the database.");
+//            }
+//
+//            Account testAccount = new Account();
+//            testAccount.setAccountBalance(rs.getInt("account_balance"));
+//            testAccount.setAccountAction(rs.getString("account_action"));
+//            testAccount.setUsername(rs.getString("username"));
+//
+//            int af = testAccount.getAccountBalance();
+ //           int af = newUpdate.getAccountBalance();
+
+
             String sql = "Update account Set account_balance = account_balance - ?, account_action = ? where username = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -98,12 +165,18 @@ public class AccountDao implements Crudable <Account> {
             ps.setString(2, newUpdate.getAccountAction());
             ps.setString(3, newUpdate.getUsername());
 
+
             int checkInsert = ps.executeUpdate();
 
             if(checkInsert ==0){
                 throw new RuntimeException();
             }
+
             int ab = newUpdate.getAccountBalance();
+
+//            if (af < ab) {
+//                throw new InvalidRequestException("Account could not withdraw due to insufficient funds ");
+//            }
 
             if(ab < 0){
                 throw new InvalidRequestException("Account could not withdraw due to a negative withdraw amount");
@@ -122,6 +195,92 @@ public class AccountDao implements Crudable <Account> {
         }
 
     }
+
+//    public Account withdraw(Integer account_balance, String username, Account newUpdate ) {
+//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+//
+//            String sql2 = "select account_balance where username = ? ";
+//            PreparedStatement ps2 = conn.prepareStatement(sql2);
+//
+//            ps2.setInt(1, account_balance);
+//            ps2.setString(2, username);
+//
+//            ResultSet  rs = ps2.executeQuery(sql2);
+//
+//            if (!rs.next()) {
+//                throw new ResourcePersistanceException("Username was not found in the database.");
+//            }
+//            int af = account_balance;
+//            int ag = newUpdate.getAccountBalance();
+//            if (af < ag) {
+//                throw new InvalidRequestException("Account could not withdraw due to insufficient funds ");
+//            }
+//            String sql = "Update account Set account_balance = account_balance - ?, account_action = ? where username = ? ";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//
+//            ps.setInt(1, newUpdate.getAccountBalance());
+//            ps.setString(2, newUpdate.getAccountAction());
+//            ps.setString(3, newUpdate.getUsername());
+//
+//
+//            int checkInsert = ps.executeUpdate();
+//
+//            if(checkInsert ==0){
+//                throw new RuntimeException();
+//            }
+//            int ab = newUpdate.getAccountBalance();
+//
+//            if(ab < 0){
+//                throw new InvalidRequestException("Account could not withdraw due to a negative withdraw amount");
+//            }
+//            String aa = newUpdate.getAccountAction();
+//            if(aa.equals("withdraw")) {
+//                return newUpdate;
+//            }else {
+//                throw new InvalidRequestException("Account could not withdraw due to inaccurate account_action");
+//            }
+//
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//
+//        }
+//
+//    }
+
+//    public Account withdraw(Account newUpdate) {
+//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+//            String sql = "Update account Set account_balance = account_balance - ?, account_action = ? where username = ? ";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//
+//            ps.setInt(1, newUpdate.getAccountBalance());
+//            ps.setString(2, newUpdate.getAccountAction());
+//            ps.setString(3, newUpdate.getUsername());
+//
+//            int checkInsert = ps.executeUpdate();
+//
+//            if(checkInsert ==0){
+//                throw new RuntimeException();
+//            }
+//            int ab = newUpdate.getAccountBalance();
+//
+//            if(ab < 0){
+//                throw new InvalidRequestException("Account could not withdraw due to a negative withdraw amount");
+//            }
+//            String aa = newUpdate.getAccountAction();
+//            if(aa.equals("withdraw")) {
+//                return newUpdate;
+//            }else {
+//                throw new InvalidRequestException("Account could not withdraw due to inaccurate account_action");
+//            }
+//
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//
+//        }
+//
+//    }
 
 
 
